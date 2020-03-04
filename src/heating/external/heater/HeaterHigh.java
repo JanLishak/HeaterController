@@ -14,7 +14,6 @@ public class HeaterHigh extends HeaterState
       }
       catch (InterruptedException e)
       {
-        e.printStackTrace();
       }
       heater.setState(new HeaterMedium(heater));
     });

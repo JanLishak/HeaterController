@@ -6,7 +6,7 @@ import heating.utility.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface HeaterModel extends UnnamedPropertyChangeSubject
+public interface HeaterModel extends PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   Temperature getTemperature(int index);
   void addTemperature(Temperature temperature);
@@ -16,7 +16,12 @@ public interface HeaterModel extends UnnamedPropertyChangeSubject
   double getFirstThermometerTemperature();
   double getSecondThermometerTemperature();
 
+  Temperature getCriticalLowTemperature();
+  Temperature getCriticalHighTemperature();
+  void setCriticalLowTemperature(double criticalLowTemperatureValue);
+  void setCriticalHighTemperature(double criticalHighTemperatureValue);
+
   int getHeaterPower();
-  void HeaterTurnUp();
-  void HeaterTurnDown();
+  void heaterTurnUp();
+  void heaterTurnDown();
 }

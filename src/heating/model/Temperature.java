@@ -18,7 +18,7 @@ public class Temperature
       return value;
    }
 
-   public String getThermometerName()
+   public String getId()
    {
       return id;
    }

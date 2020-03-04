@@ -5,7 +5,10 @@ import heating.external.outside.OutsideTemperature;
 import heating.external.thermometer.Thermometer;
 import heating.model.Temperature;
 import heating.model.TemperatureList;
+
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class HeaterModelManager implements HeaterModel
@@ -15,13 +18,18 @@ public class HeaterModelManager implements HeaterModel
   private TemperatureList temperatureList;
   private Thermometer firstThermometer;
   private Thermometer secondThermometer;
+  private Temperature criticalLowTemperature;
+  private Temperature criticalHighTemperature;
+
+  private PropertyChangeSupport property;
+
 
   public HeaterModelManager()
   {
     heater = new Heater();
 
     outsideTemperature = new OutsideTemperature(10, -20, 20);
-    Thread outsideTemperatureThread = new Thread();
+    Thread outsideTemperatureThread = new Thread(outsideTemperature);
     outsideTemperatureThread.setDaemon(true);
     outsideTemperatureThread.start();
 
@@ -35,6 +43,36 @@ public class HeaterModelManager implements HeaterModel
     secondThermometerThread.start();
 
     temperatureList = new TemperatureList();
+    property = new PropertyChangeSupport(this);
+
+    //outsideTemperature.addListener(this);
+    //firstThermometer.addListener(this);
+    //secondThermometer.addListener(this);
+
+    criticalLowTemperature = new Temperature("criticalLow", 12);
+    criticalHighTemperature = new Temperature("criticalHigh", 18);
+  }
+
+  @Override public Temperature getCriticalLowTemperature()
+  {
+    return criticalLowTemperature;
+  }
+
+  @Override public Temperature getCriticalHighTemperature()
+  {
+    return criticalHighTemperature;
+  }
+
+  @Override public void setCriticalLowTemperature(double criticalLowTemperatureValue)
+  {
+    criticalLowTemperature = new Temperature("criticalLow", criticalLowTemperatureValue);
+    property.firePropertyChange("criticalTemperatureChange",null, criticalLowTemperature);
+  }
+
+  @Override public void setCriticalHighTemperature(double criticalHighTemperatureValue)
+  {
+    criticalHighTemperature = new Temperature("criticalHigh", criticalHighTemperatureValue);
+    property.firePropertyChange("criticalTemperatureChange", null, criticalHighTemperature);
   }
 
   @Override public Temperature getTemperature(int index)
@@ -72,27 +110,35 @@ public class HeaterModelManager implements HeaterModel
     return heater.getPower();
   }
 
-  @Override public void HeaterTurnUp()
+  @Override public void heaterTurnUp()
   {
     heater.turnUp();
   }
 
-  @Override public void HeaterTurnDown()
+  @Override public void heaterTurnDown()
   {
     heater.turnDown();
   }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
+    property.addPropertyChangeListener(listener);
     firstThermometer.addListener(listener);
     secondThermometer.addListener(listener);
     outsideTemperature.addListener(listener);
+    heater.addListener(listener);
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
   {
+    property.removePropertyChangeListener(listener);
     firstThermometer.removeListener(listener);
     secondThermometer.removeListener(listener);
     outsideTemperature.removeListener(listener);
+    heater.removeListener(listener);
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
+  {
   }
 }
