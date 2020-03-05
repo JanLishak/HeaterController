@@ -12,6 +12,7 @@ public class ViewHandler
   private Stage primaryStage;
   private ViewModelFactory viewModelFactory;
   private MainViewController mainViewController;
+  private LogViewController logViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -32,6 +33,9 @@ public class ViewHandler
     {
       case "mainView":
         root = loadMainView("MainView.fxml");
+        break;
+      case "logView":
+        root = loadLogView("LogView.fxml");
         break;
     }
     currentScene.setRoot(root);
@@ -74,5 +78,29 @@ public class ViewHandler
       mainViewController.reset();
     }
     return mainViewController.getRoot();
+  }
+
+  private Region loadLogView(String fxmlFile)
+  {
+    if (logViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        logViewController = loader.getController();
+        logViewController.init(this, viewModelFactory.getLogViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      logViewController.reset();
+    }
+    return logViewController.getRoot();
   }
 }

@@ -77,6 +77,6 @@ public class MainViewController
 
   public void TemperatureLog(ActionEvent actionEvent)
   {
-    viewHandler.openView("");
+    viewHandler.openView("logView");
   }
 }
