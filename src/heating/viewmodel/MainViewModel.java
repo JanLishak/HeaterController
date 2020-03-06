@@ -147,89 +147,52 @@ public class MainViewModel implements PropertyChangeListener
     });
   }
 
-  public String getHeaterPower()
-  {
-    return heaterPower.get();
-  }
 
   public SimpleStringProperty heaterPowerProperty()
   {
     return heaterPower;
   }
 
-  public double getFirstThermometerTemperature()
-  {
-    return firstThermometerTemperature.get();
-  }
 
   public SimpleDoubleProperty firstThermometerTemperatureProperty()
   {
     return firstThermometerTemperature;
   }
 
-  public double getSecondThermometerTemperature()
-  {
-    return secondThermometerTemperature.get();
-  }
 
   public SimpleDoubleProperty secondThermometerTemperatureProperty()
   {
     return secondThermometerTemperature;
   }
 
-  public double getOutsideTemperature()
-  {
-    return outsideTemperature.get();
-  }
 
   public SimpleDoubleProperty outsideTemperatureProperty()
   {
     return outsideTemperature;
   }
 
-  public String getFirstThermometerWarning()
-  {
-    return firstThermometerWarning.get();
-  }
 
   public SimpleStringProperty firstThermometerWarningProperty()
   {
     return firstThermometerWarning;
   }
 
-  public String getSecondThermometerWarning()
-  {
-    return secondThermometerWarning.get();
-  }
 
   public SimpleStringProperty secondThermometerWarningProperty()
   {
     return secondThermometerWarning;
   }
 
-  public String getInputError()
-  {
-    return inputError.get();
-  }
 
   public SimpleStringProperty inputErrorProperty()
   {
     return inputError;
   }
 
-  public double getSetMaxTemperature()
-  {
-    return setMaxTemperature.get();
-  }
 
   public SimpleDoubleProperty setMaxTemperatureProperty()
   {
     return setMaxTemperature;
-  }
-
-  public double getSetMinTemperature()
-  {
-    return setMinTemperature.get();
   }
 
   public SimpleDoubleProperty setMinTemperatureProperty()
@@ -237,20 +200,12 @@ public class MainViewModel implements PropertyChangeListener
     return setMinTemperature;
   }
 
-  public double getMaxTemperature()
-  {
-    return maxTemperature.get();
-  }
 
   public SimpleDoubleProperty maxTemperatureProperty()
   {
     return maxTemperature;
   }
 
-  public double getMinTemperature()
-  {
-    return minTemperature.get();
-  }
 
   public SimpleDoubleProperty minTemperatureProperty()
   {

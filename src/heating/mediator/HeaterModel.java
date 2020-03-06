@@ -10,7 +10,7 @@ public interface HeaterModel extends PropertyChangeListener, UnnamedPropertyChan
 {
   Temperature getTemperature(int index);
   void addTemperature(Temperature temperature);
-  ArrayList<Temperature> getAllTemperatures();
+  int getTemperatureListSize();
 
   double getOutsideTemperature();
   double getFirstThermometerTemperature();

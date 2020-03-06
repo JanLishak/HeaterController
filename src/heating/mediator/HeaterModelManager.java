@@ -9,7 +9,6 @@ import heating.model.TemperatureList;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 
 public class HeaterModelManager implements HeaterModel
 {
@@ -33,8 +32,8 @@ public class HeaterModelManager implements HeaterModel
     outsideTemperatureThread.setDaemon(true);
     outsideTemperatureThread.start();
 
-    firstThermometer = new Thermometer(10, "th1", 1,heater, outsideTemperature);
-    secondThermometer = new Thermometer(10, "th2", 7, heater, outsideTemperature);
+    firstThermometer = new Thermometer(10, "th1", 1, this);
+    secondThermometer = new Thermometer(10, "th2", 7, this);
     Thread firstThermometerThread = new Thread(firstThermometer);
     Thread secondThermometerThread = new Thread(secondThermometer);
     firstThermometerThread.setDaemon(true);
@@ -45,9 +44,9 @@ public class HeaterModelManager implements HeaterModel
     temperatureList = new TemperatureList();
     property = new PropertyChangeSupport(this);
 
-    //outsideTemperature.addListener(this);
-    //firstThermometer.addListener(this);
-    //secondThermometer.addListener(this);
+    outsideTemperature.addListener(this);
+    firstThermometer.addListener(this);
+    secondThermometer.addListener(this);
 
     criticalLowTemperature = new Temperature("criticalLow", 12);
     criticalHighTemperature = new Temperature("criticalHigh", 18);
@@ -85,9 +84,9 @@ public class HeaterModelManager implements HeaterModel
     temperatureList.addTemperature(temperature);
   }
 
-  @Override public ArrayList<Temperature> getAllTemperatures()
+  @Override public int getTemperatureListSize()
   {
-    return temperatureList.getAll();
+    return temperatureList.getSize();
   }
 
   @Override public double getOutsideTemperature()
@@ -138,7 +137,10 @@ public class HeaterModelManager implements HeaterModel
     heater.removeListener(listener);
   }
 
-  @Override public void propertyChange(PropertyChangeEvent propertyChangeEvent)
+  @Override public void propertyChange(PropertyChangeEvent event)
   {
+    if (event.getPropertyName().equals("ThermometerTemperature") || event.getPropertyName().equals("outsideTemperature")){
+      temperatureList.addTemperature((Temperature) event.getNewValue());
+    }
   }
 }

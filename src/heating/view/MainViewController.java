@@ -11,16 +11,16 @@ import javafx.scene.layout.Region;
 
 public class MainViewController
 {
-  public Label powerLabel;
-  public Label firstThermometerTemperatureLabel;
-  public Label secondThermometerTemperatureLabel;
-  public Label outsideTemperatureLabel;
-  public Label secondThermometerWaringLabel;
-  public Label firstThermometerWarningLabel;
-  public Label criticalLowLabel;
-  public Label criticalHighLabel;
-  public TextField maxTemperatureField;
-  public TextField minTemperatureField;
+  @FXML public Label powerLabel;
+  @FXML public Label firstThermometerTemperatureLabel;
+  @FXML public Label secondThermometerTemperatureLabel;
+  @FXML public Label outsideTemperatureLabel;
+  @FXML public Label secondThermometerWaringLabel;
+  @FXML public Label firstThermometerWarningLabel;
+  @FXML public Label criticalLowLabel;
+  @FXML public Label criticalHighLabel;
+  @FXML public TextField maxTemperatureField;
+  @FXML public TextField minTemperatureField;
 
   private Region root;
   private MainViewModel viewModel;

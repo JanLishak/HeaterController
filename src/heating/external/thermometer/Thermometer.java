@@ -1,31 +1,26 @@
 package heating.external.thermometer;
 
-import heating.external.heater.Heater;
-import heating.external.outside.OutsideTemperature;
+import heating.mediator.HeaterModel;
 import heating.model.Temperature;
 import heating.utility.UnnamedPropertyChangeSubject;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Random;
 
 public class Thermometer implements Runnable, UnnamedPropertyChangeSubject
 {
-  double currentTemperature;
-  int distance;
-  String id;
-  private Heater heater;
-  private OutsideTemperature outsideTemperature;
+  private HeaterModel model;
+  private double currentTemperature;
+  private int distance;
+  private String id;
+  private PropertyChangeSupport property;
 
-  PropertyChangeSupport property;
-
-  public Thermometer(double currentTemperature, String id, int distance, Heater heater, OutsideTemperature outsideTemperature)
+  public Thermometer(double currentTemperature, String id, int distance, HeaterModel model)
   {
+    this.model = model;
     this.currentTemperature = currentTemperature;
     this.id = id;
     this.distance = distance;
-    this.outsideTemperature = outsideTemperature;
-    this.heater = heater;
     this.property = new PropertyChangeSupport(this);
   }
 
@@ -34,7 +29,7 @@ public class Thermometer implements Runnable, UnnamedPropertyChangeSubject
     Random random = new Random();
     int waitTime = 6;
     while (true){
-      currentTemperature = temperature(currentTemperature,heater.getPower(),distance,outsideTemperature.getCurrentTemperature(), waitTime);
+      currentTemperature = temperature(currentTemperature,model.getHeaterPower(), distance,model.getOutsideTemperature(),waitTime);
       property.firePropertyChange("ThermometerTemperature", null, new Temperature(id, currentTemperature));
       System.out.println("Thermometer id=" + id + " Temperature=" + currentTemperature + " last mesurment:" + waitTime);
       waitTime = 4 + random.nextInt(5);

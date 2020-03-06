@@ -29,4 +29,9 @@ public class DateTime
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
       return sdf.format(date);
    }
+
+   public Date getDate()
+   {
+      return date;
+   }
 }

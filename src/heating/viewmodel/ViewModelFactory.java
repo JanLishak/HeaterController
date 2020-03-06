@@ -1,7 +1,6 @@
 package heating.viewmodel;
 
 import heating.mediator.HeaterModel;
-import heating.view.LogViewModel;
 
 public class ViewModelFactory
 {
