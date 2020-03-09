@@ -1,4 +1,4 @@
-package heating.mediator;
+package heating.model;
 
 import heating.model.Temperature;
 import heating.utility.UnnamedPropertyChangeSubject;

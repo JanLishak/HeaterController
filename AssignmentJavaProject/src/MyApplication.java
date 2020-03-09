@@ -1,4 +1,4 @@
-import heating.mediator.HeaterModelManager;
+import heating.model.HeaterModelManager;
 import heating.view.ViewHandler;
 import heating.viewmodel.ViewModelFactory;
 import javafx.application.Application;

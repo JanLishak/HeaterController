@@ -1,6 +1,6 @@
 package heating.external.thermometer;
 
-import heating.mediator.HeaterModel;
+import heating.model.HeaterModel;
 import heating.model.Temperature;
 import heating.utility.UnnamedPropertyChangeSubject;
 import java.beans.PropertyChangeListener;

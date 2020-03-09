@@ -1,10 +1,8 @@
-package heating.mediator;
+package heating.model;
 
 import heating.external.heater.Heater;
 import heating.external.outside.OutsideTemperature;
 import heating.external.thermometer.Thermometer;
-import heating.model.Temperature;
-import heating.model.TemperatureList;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

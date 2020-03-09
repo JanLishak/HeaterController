@@ -1,6 +1,6 @@
 package heating.viewmodel;
 
-import heating.mediator.HeaterModel;
+import heating.model.HeaterModel;
 import heating.model.Temperature;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;

@@ -1,6 +1,6 @@
 package heating.viewmodel;
 
-import heating.mediator.HeaterModel;
+import heating.model.HeaterModel;
 
 public class ViewModelFactory
 {
