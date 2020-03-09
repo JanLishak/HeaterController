@@ -1,9 +1,11 @@
-# HeaterController
+Heater Controller (Assignemnt 1)
+
+Repo:
+https://github.com/JanLishak/HeaterController
 
 /Diagrams - astah digram files
 /DiagramExports - exported high res png of diagrams
 /HeaterControllerProject - Java project module
-
 
 
 
